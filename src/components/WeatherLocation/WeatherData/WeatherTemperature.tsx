@@ -9,6 +9,7 @@ import {
     DRIZZLE,
     THUNDER,   
 } from '../../../constants/Weather';
+import './styles.css';
 
 const icons = {
     [SUN]: "day-sunny",
@@ -21,23 +22,26 @@ const icons = {
 
 const getWeatherIcon = weatherState => {
     const icon = icons[weatherState];
+    const sizeIcon = "4x";
+
     console.log(icon);
     if (icon) {
         
-        return  <WeatherIcons name={icon} size="2x"></WeatherIcons>
+        return  <WeatherIcons className="wicon" name={icon} size={sizeIcon}></WeatherIcons>
     } else {
-        return  <WeatherIcons name="day-sunny" size="2x"></WeatherIcons>
+        return  <WeatherIcons className="wicon" name="day-sunny" size={sizeIcon}></WeatherIcons>
     }
 }
 
 export function WeatherTemperature ({ temperature, weatherState })  {
     return (
-        <div> 
+        <div className="weatherTemperatureCont"> 
                 {
                 getWeatherIcon(weatherState)
                 }      
-                <span>25 grados</span>
-            </div>
+            <span className="temperature">{`${temperature}`}</span>
+            <span className="temperatureType">{` ºC`}</span>
+        </div>
     );
   }
 
